@@ -6,10 +6,15 @@ from dotenv import load_dotenv
 import gradio as gr
 
 load_dotenv(override=True)
+import os
+openrouter_api_key = os.getenv('OPENROUTER_API_KEY')
 
-MODEL_NAME = "gpt-5.4-mini"
+MODEL_NAME = "openrouter/free"
 
-openai = OpenAI()
+openai = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=openrouter_api_key
+)
 
 system = [{"role": "system", "content": TWIN_SYSTEM_PROMPT}]
 
